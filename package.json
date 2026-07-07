@@ -1,0 +1,25 @@
+{
+  "name": "joto-ramen-website",
+  "version": "1.0.0",
+  "description": "Joto Ramen Restaurant Website - Full Stack Application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "ramen",
+    "restaurant",
+    "nairobi",
+    "fullstack"
+  ],
+  "author": "Joto Ramen",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.5",
+    "cors": "^2.8.6",
+    "express": "^4.22.2",
+    "nodemailer": "^6.9.7",
+    "sqlite3": "^5.1.7"
+  }
+}

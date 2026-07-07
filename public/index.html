@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joto Ramen - 上等らぁめん | Premium Ramen in Nairobi</title>
+    <meta name="description" content="Handcrafted ramen. Nairobi's soul, Japan's spirit.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        charcoal: '#1a1a1a',
+                        'lantern-red': '#E84545',
+                        parchment: '#F5ECD7',
+                        'muted-gold': '#C9A84C',
+                        'dark-bg': '#0d0d0d',
+                        'light-pink': '#FFB6C1'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'noto': ['Noto Serif JP', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+<body class="min-h-screen bg-charcoal">
+    <!-- Promo Banner -->
+    <div class="promo-banner text-center py-3 px-4">
+        <p class="text-white font-semibold">🎉 Special Offer: Free ice cream scoop for every KSh 1,000 spent! 🍦</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent" style="top: 48px;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3 cursor-pointer" onclick="scrollToSection('home')">
+                    <div class="w-10 h-10 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">J</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-parchment">JOTO RAMEN</h1>
+                        <p class="text-xs text-muted-gold japanese-font">上等らぁめん</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center gap-1">
+                    <button onclick="scrollToSection('home')" class="nav-item px-4 py-2 rounded-lg text-sm font-medium text-parchment/80 hover:text-parchment hover:bg-white/5">Home</button>
+                    <button onclick="scrollToSection('menu')" class="nav-item px-4 py-2 rounded-lg text-sm font-medium text-parchment/80 hover:text-parchment hover:bg-white/5">Menu</button>
+                    <button onclick="scrollToSection('gallery')" class="nav-item px-4 py-2 rounded-lg text-sm font-medium text-parchment/80 hover:text-parchment hover:bg-white/5">Gallery</button>
+                    <button onclick="scrollToSection('reviews')" class="nav-item px-4 py-2 rounded-lg text-sm font-medium text-parchment/80 hover:text-parchment hover:bg-white/5">Reviews</button>
+                    <button onclick="scrollToSection('locations')" class="nav-item px-4 py-2 rounded-lg text-sm font-medium text-parchment/80 hover:text-parchment hover:bg-white/5">Locations</button>
+                    <button onclick="scrollToSection('reservations')" class="nav-item px-4 py-2 rounded-lg text-sm font-medium text-parchment/80 hover:text-parchment hover:bg-white/5">Reservations</button>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="openLoginModal()" class="hidden md:flex items-center gap-1 px-3 py-2 bg-lantern-red/20 rounded-lg text-lantern-red hover:bg-lantern-red/30 transition-colors text-sm font-semibold">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <span id="login-btn-text">Login</span>
+                    </button>
+                    <a href="admin.html" class="hidden md:flex items-center gap-1 px-3 py-2 bg-white/5 rounded-lg text-parchment/60 hover:text-parchment transition-colors text-sm">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <span>Admin</span>
+                    </a>
+                    <button class="md:hidden text-parchment p-2" onclick="toggleMobileMenu()">
+                        <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden bg-charcoal border-t border-white/10 hidden">
+            <div class="px-4 py-4 space-y-2">
+                <button onclick="scrollToSection('home'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-parchment/80 hover:text-parchment">Home</button>
+                <button onclick="scrollToSection('menu'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-parchment/80 hover:text-parchment">Menu</button>
+                <button onclick="scrollToSection('gallery'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-parchment/80 hover:text-parchment">Gallery</button>
+                <button onclick="scrollToSection('reviews'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-parchment/80 hover:text-parchment">Reviews</button>
+                <button onclick="scrollToSection('locations'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-parchment/80 hover:text-parchment">Locations</button>
+                <button onclick="scrollToSection('reservations'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-parchment/80 hover:text-parchment">Reservations</button>
+                <button onclick="openLoginModal(); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-lantern-red">🔐 Customer Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-charcoal" style="padding-top: 68px;">
+        <div class="absolute inset-0 bg-gradient-to-b from-charcoal via-charcoal/90 to-charcoal"></div>
+        <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('https://images.unsplash.com/photo-1591814468924-caf88d1232e1?w=1920')"></div>
+        <div id="steam-container" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="lantern" style="left: 10%; animation-delay: 0s; animation-duration: 4s;"></div>
+            <div class="lantern" style="left: 25%; animation-delay: 1s; animation-duration: 5s;"></div>
+            <div class="lantern" style="left: 70%; animation-delay: 0.5s; animation-duration: 4.5s;"></div>
+            <div class="lantern" style="left: 85%; animation-delay: 1.5s; animation-duration: 5.5s;"></div>
+            <div class="lantern" style="left: 45%; animation-delay: 2s; animation-duration: 6s;"></div>
+        </div>
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <p class="text-muted-gold text-lg md:text-xl mb-4 tracking-widest uppercase fade-in japanese-font">上等らぁめん</p>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-parchment mb-6 fade-in">JOTO RAMEN</h1>
+            <p class="text-xl md:text-2xl text-parchment/80 mb-8 max-w-2xl mx-auto fade-in">Handcrafted ramen. Nairobi's soul, Japan's spirit.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+                <button onclick="scrollToSection('reservations')" class="px-8 py-4 bg-lantern-red text-white rounded-full font-semibold text-lg flex items-center justify-center gap-2 hover:bg-lantern-red/90 transition-all shadow-lg shadow-lantern-red/30 hover:scale-105 active:scale-95">
+                    Reserve a Table
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+                <button onclick="scrollToSection('menu')" class="px-8 py-4 border-2 border-muted-gold text-muted-gold rounded-full font-semibold text-lg hover:bg-muted-gold/10 transition-all hover:scale-105 active:scale-95">View Menu</button>
+            </div>
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 scroll-indicator">
+                <svg class="text-parchment/50 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-24 bg-gradient-to-b from-charcoal to-dark-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section">
+                <div class="flex items-center justify-center gap-3 text-muted-gold mb-4">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    <span class="text-lg font-semibold uppercase tracking-wider">Our Menu</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-parchment mb-4">Crafted with <span class="text-lantern-red">Passion</span></h2>
+                <p class="text-parchment/80 text-lg max-w-2xl mx-auto">Order online for pickup or delivery. Minimum order KSh 1,500.</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-3 mb-12" id="menu-filters">
+                <button onclick="filterMenu('all')" class="menu-filter-btn active px-6 py-3 rounded-full flex items-center gap-2 font-medium transition-all bg-lantern-red text-white shadow-lg shadow-lantern-red/30">All Items</button>
+                <button onclick="filterMenu('ramen')" class="menu-filter-btn px-6 py-3 rounded-full flex items-center gap-2 font-medium transition-all bg-white/5 text-parchment/80 hover:bg-white/10">Ramen</button>
+                <button onclick="filterMenu('starters')" class="menu-filter-btn px-6 py-3 rounded-full flex items-center gap-2 font-medium transition-all bg-white/5 text-parchment/80 hover:bg-white/10">Starters</button>
+                <button onclick="filterMenu('sides')" class="menu-filter-btn px-6 py-3 rounded-full flex items-center gap-2 font-medium transition-all bg-white/5 text-parchment/80 hover:bg-white/10">Sides</button>
+                <button onclick="filterMenu('drinks')" class="menu-filter-btn px-6 py-3 rounded-full flex items-center gap-2 font-medium transition-all bg-white/5 text-parchment/80 hover:bg-white/10">Drinks</button>
+            </div>
+            <div id="menu-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            
+            <!-- Order Cart Button -->
+            <div id="order-cart" class="fixed bottom-24 right-4 z-40 hidden">
+                <button onclick="toggleCart()" class="px-6 py-4 bg-lantern-red text-white rounded-full font-semibold shadow-lg shadow-lantern-red/30 hover:scale-105 transition-all flex items-center gap-3">
+                    <span>🛒</span>
+                    <span id="cart-count">0</span> items | KSh <span id="cart-total">0</span>
+                    <span class="ml-2">→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Modal -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6 sticky top-0 bg-charcoal py-2 z-10">
+                <h3 class="text-2xl font-bold text-parchment">🛒 Your Order</h3>
+                <button onclick="closeOrderModal()" class="text-parchment/60 hover:text-parchment">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="cart-items" class="space-y-4 mb-6 max-h-48 overflow-y-auto pr-2"></div>
+            <div class="border-t border-white/10 pt-4 mb-6 sticky bottom-0 bg-charcoal py-2">
+                <div class="flex justify-between text-lg font-semibold">
+                    <span class="text-parchment">Total:</span>
+                    <span class="text-lantern-red">KSh <span id="order-total">0</span></span>
+                </div>
+            </div>
+            <form onsubmit="handleOrderSubmit(event)" class="space-y-4 pb-4">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-parchment/80 text-sm mb-2">Name *</label>
+                        <input type="text" id="order-name" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red" placeholder="Your name">
+                    </div>
+                    <div>
+                        <label class="block text-parchment/80 text-sm mb-2">Phone *</label>
+                        <input type="tel" id="order-phone" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red" placeholder="+254...">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-parchment/80 text-sm mb-2">Email *</label>
+                    <input type="email" id="order-email" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red" placeholder="your@email.com">
+                </div>
+                <div>
+                    <label class="block text-parchment/80 text-sm mb-2">Order Type *</label>
+                    <select id="order-type" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment">
+                        <option value="pickup">Pickup</option>
+                        <option value="delivery">Delivery (+KSh 200)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-parchment/80 text-sm mb-2">Delivery Address (if delivery)</label>
+                    <textarea id="order-address" rows="2" class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment resize-none" placeholder="Enter your delivery address"></textarea>
+                </div>
+                <div>
+                    <label class="block text-parchment/80 text-sm mb-2">Special Instructions</label>
+                    <textarea id="order-notes" rows="2" class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment resize-none" placeholder="Any allergies or special requests?"></textarea>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="submit" class="flex-1 py-4 bg-lantern-red text-white rounded-lg font-semibold hover:bg-lantern-red/90 transition-all">Place Order</button>
+                    <button type="button" onclick="closeOrderModal()" class="flex-1 py-4 bg-white/10 text-parchment rounded-lg font-semibold hover:bg-white/20">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-24 bg-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section">
+                <div class="flex items-center justify-center gap-3 text-muted-gold mb-4">
+                    <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    <span class="text-lg font-semibold uppercase tracking-wider">Gallery</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-parchment mb-4">A Taste of <span class="text-lantern-red">Joto</span></h2>
+                <p class="text-parchment/80 text-lg max-w-2xl mx-auto">Follow us <a href="https://instagram.com/joto_ramen_nairobi" class="text-muted-gold hover:underline">@joto_ramen_nairobi</a></p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="gallery-grid"></div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-24 bg-gradient-to-b from-dark-bg to-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section">
+                <div class="flex items-center justify-center gap-3 text-muted-gold mb-4">
+                    <svg class="w-7 h-7 text-muted-gold fill-muted-gold" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                    <span class="text-lg font-semibold uppercase tracking-wider">Customer Reviews</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-parchment mb-4">Share Your <span class="text-lantern-red">Experience</span></h2>
+                <p class="text-parchment/80 text-lg max-w-2xl mx-auto">Read what our customers say and leave your own review!</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="fade-in-section">
+                    <div class="bg-white/5 rounded-2xl p-8 border border-white/10">
+                        <h3 class="text-2xl font-bold text-parchment mb-6">Leave a Review</h3>
+                        <form id="review-form" onsubmit="handleReviewSubmit(event)" class="space-y-6">
+                            <div>
+                                <label class="block text-parchment/80 text-sm mb-2">Your Name *</label>
+                                <input type="text" id="review-name" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-parchment/80 text-sm mb-2">Email *</label>
+                                <input type="email" id="review-email" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red" placeholder="john@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-parchment/80 text-sm mb-2">Rating *</label>
+                                <div class="flex gap-2" id="star-rating">
+                                    <button type="button" onclick="setRating(1)" class="star-btn text-3xl text-parchment/40 hover:text-muted-gold transition-colors">☆</button>
+                                    <button type="button" onclick="setRating(2)" class="star-btn text-3xl text-parchment/40 hover:text-muted-gold transition-colors">☆</button>
+                                    <button type="button" onclick="setRating(3)" class="star-btn text-3xl text-parchment/40 hover:text-muted-gold transition-colors">☆</button>
+                                    <button type="button" onclick="setRating(4)" class="star-btn text-3xl text-parchment/40 hover:text-muted-gold transition-colors">☆</button>
+                                    <button type="button" onclick="setRating(5)" class="star-btn text-3xl text-parchment/40 hover:text-muted-gold transition-colors">☆</button>
+                                </div>
+                                <input type="hidden" id="review-rating" required>
+                            </div>
+                            <div>
+                                <label class="block text-parchment/80 text-sm mb-2">Your Review *</label>
+                                <textarea id="review-text" required rows="4" class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red resize-none" placeholder="Tell us about your experience..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-parchment/80 text-sm mb-2">Favorite Dish</label>
+                                <select id="review-dish" class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment">
+                                    <option value="">Select your favorite dish (optional)</option>
+                                    <option value="Special Shoyu">Special Shoyu</option>
+                                    <option value="Special Miso">Special Miso</option>
+                                    <option value="Tonkotsu Ramen">Tonkotsu Ramen</option>
+                                    <option value="Spicy Miso">Spicy Miso</option>
+                                    <option value="Vegan Ramen">Vegan Ramen</option>
+                                    <option value="Karaage">Karaage</option>
+                                    <option value="Gyoza">Gyoza</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full py-4 bg-lantern-red text-white rounded-lg font-semibold text-lg hover:bg-lantern-red/90 transition-all shadow-lg shadow-lantern-red/30">Submit Review</button>
+                            <p class="text-center text-parchment/60 text-sm">All reviews are posted immediately.</p>
+                        </form>
+                    </div>
+                </div>
+                <div class="fade-in-section">
+                    <div class="space-y-4" id="customer-reviews-list"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section id="locations" class="py-24 bg-gradient-to-b from-charcoal to-dark-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section">
+                <div class="flex items-center justify-center gap-3 text-muted-gold mb-4">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="text-lg font-semibold uppercase tracking-wider">Our Locations</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-parchment mb-4">Visit <span class="text-lantern-red">Us</span></h2>
+                <p class="text-parchment/80 text-lg max-w-2xl mx-auto">Find us at our convenient locations across Nairobi</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white/5 rounded-2xl overflow-hidden border border-white/10 fade-in-section">
+                    <div class="h-64 bg-gray-800">
+                        <iframe src="https://maps.google.com/maps?q=The+Alchemist+Westlands+Nairobi&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border: 0" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-parchment mb-3">The Alchemist, Westlands</h3>
+                        <div class="space-y-2 text-parchment/80">
+                            <p class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-lantern-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                Parklands Road, The Alchemist Complex
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-lantern-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                +254 700 000 000
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-lantern-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Mon-Thu & Sun: 12pm - 11:30pm<br>
+                                <span class="text-lantern-red ml-6">Fri & Sat: 12pm - 3:30am</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/5 rounded-2xl overflow-hidden border border-white/10 fade-in-section">
+                    <div class="h-64 bg-gray-800">
+                        <iframe src="https://maps.google.com/maps?q=Lavington+Mall+Nairobi&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border: 0" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-parchment mb-3">Lavington Mall</h3>
+                        <div class="space-y-2 text-parchment/80">
+                            <p class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-lantern-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                First Floor, Above Mall Entrance
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-lantern-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                +254 700 000 000
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-lantern-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Mon-Thu & Sun: 12pm - 11:30pm<br>
+                                <span class="text-lantern-red ml-6">Fri & Sat: 12pm - 3:30am</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservations Section -->
+    <section id="reservations" class="py-24 bg-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="space-y-6 fade-in-section">
+                    <div class="flex items-center gap-3 text-muted-gold">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                        <span class="text-lg font-semibold uppercase tracking-wider">Reservations</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-parchment">Book Your <span class="text-lantern-red">Table</span></h2>
+                    <p class="text-parchment/80 text-lg leading-relaxed">Reserve your spot at Joto Ramen. We accept reservations via DM on Instagram and welcome walk-ins.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 text-parchment/80">
+                            <div class="w-10 h-10 bg-lantern-red/20 rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-lantern-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                            </div>
+                            <div><p class="font-semibold">Instagram DM</p><a href="https://instagram.com/joto_ramen_nairobi" class="text-muted-gold hover:underline">@joto_ramen_nairobi</a></div>
+                        </div>
+                        <div class="flex items-center gap-4 text-parchment/80">
+                            <div class="w-10 h-10 bg-green-600/20 rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            </div>
+                            <div><p class="font-semibold">WhatsApp</p><p class="text-muted-gold">+254 700 000 000</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-muted-gold/10 rounded-xl p-6 border border-muted-gold/20">
+                        <svg class="text-lantern-red w-8 h-8 mb-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                        <p class="text-parchment font-semibold">Solo diners are always welcome</p>
+                        <p class="text-parchment/60 text-sm mt-1">Pull up a stool at our bar and enjoy the show</p>
+                    </div>
+                </div>
+                <div class="fade-in-section">
+                    <form id="reservation-form" class="bg-white/5 rounded-2xl p-8 space-y-6" onsubmit="handleReservation(event)">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div><label class="block text-parchment/80 text-sm mb-2">Name</label>
+                                <input type="text" id="res-name" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red" placeholder="Your name"></div>
+                            <div><label class="block text-parchment/80 text-sm mb-2">Phone</label>
+                                <input type="tel" id="res-phone" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red" placeholder="+254..."></div>
+                        </div>
+                        <div><label class="block text-parchment/80 text-sm mb-2">Email</label>
+                            <input type="email" id="res-email" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red" placeholder="your@email.com"></div>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div><label class="block text-parchment/80 text-sm mb-2">Date</label>
+                                <input type="date" id="res-date" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red"></div>
+                            <div><label class="block text-parchment/80 text-sm mb-2">Time</label>
+                                <input type="time" id="res-time" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red"></div>
+                            <div><label class="block text-parchment/80 text-sm mb-2">Guests</label>
+                                <select id="res-guests" class="bg-light-pink text-black w-full px-4 py-3 rounded-lg"><option value="1">1 Guest</option><option value="2" selected>2 Guests</option><option value="3">3 Guests</option><option value="4">4 Guests</option><option value="5">5 Guests</option><option value="6">6 Guests</option><option value="7">7 Guests</option><option value="8">8 Guests</option></select></div>
+                        </div>
+                        <div><label class="block text-parchment/80 text-sm mb-2">Location</label><select id="res-location" class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment"><option value="The Alchemist" class="bg-charcoal">The Alchemist, Westlands</option><option value="Lavington Mall" class="bg-charcoal">Lavington Mall</option></select></div>
+                        <div><label class="block text-parchment/80 text-sm mb-2">Special Requests</label><textarea id="res-requests" rows="3" class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment resize-none" placeholder="Allergies, celebrations, seating preferences..."></textarea></div>
+                        <button type="submit" class="w-full py-4 bg-lantern-red text-white rounded-lg font-semibold text-lg hover:bg-lantern-red/90 transition-all shadow-lg shadow-lantern-red/30">Request Reservation</button>
+                        <p class="text-center text-parchment/60 text-sm">We'll confirm your reservation via WhatsApp or Instagram DM within 24 hours.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-bg border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid md:grid-cols-4 gap-12">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center"><span class="text-white font-bold text-lg">J</span></div>
+                        <div><h3 class="text-xl font-bold text-parchment">JOTO RAMEN</h3><p class="text-xs text-muted-gold japanese-font">上等らぁめん</p></div>
+                    </div>
+                    <p class="text-parchment/60 text-sm leading-relaxed">Handcrafted ramen. Nairobi's soul, Japan's spirit.</p>
+                    <div class="flex gap-4">
+                        <a href="https://instagram.com/joto_ramen_nairobi" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-lantern-red transition-colors">
+                            <svg class="w-5 h-5 text-parchment" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="admin.html" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-lantern-red transition-colors" title="Admin Login">
+                            <svg class="w-5 h-5 text-parchment" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-parchment font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#menu" class="text-parchment/60 hover:text-parchment transition-colors">Menu</a></li>
+                        <li><a href="#gallery" class="text-parchment/60 hover:text-parchment transition-colors">Gallery</a></li>
+                        <li><a href="#reviews" class="text-parchment/60 hover:text-parchment transition-colors">Reviews</a></li>
+                        <li><a href="#reservations" class="text-parchment/60 hover:text-parchment transition-colors">Reservations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-parchment font-semibold mb-4">Hours</h4>
+                    <ul class="space-y-3 text-parchment/60 text-sm">
+                        <li><span class="text-parchment">Mon–Thu & Sun</span><p>12:00pm – 11:30pm</p></li>
+                        <li><span class="text-lantern-red">Fri & Sat</span><p>12:00pm – 3:30am</p></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-parchment font-semibold mb-4">Stay Updated</h4>
+                    <p class="text-parchment/60 text-sm mb-4">Get the latest news and special offers.</p>
+                    <form onsubmit="handleNewsletter(event)" class="flex gap-2">
+                        <input type="email" id="newsletter-email" placeholder="Your email" required class="flex-1 px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-parchment text-sm focus:outline-none focus:border-lantern-red">
+                        <button type="submit" class="px-4 py-2 bg-lantern-red text-white rounded-lg hover:bg-lantern-red/90 transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-parchment/40 text-sm">© <span id="current-year"></span> Joto Ramen. All rights reserved.</p>
+                <div class="flex gap-6 text-parchment/40 text-sm">
+                    <a href="#" class="hover:text-parchment transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-parchment transition-colors">Terms of Service</a>
+                    <a href="admin.html" class="hover:text-parchment transition-colors">Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/254700000000" target="_blank" class="floating-whatsapp" title="Chat on WhatsApp">
+        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Gallery image">
+    </div>
+
+    <!-- Customer Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content max-w-md">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-parchment" id="login-modal-title">Customer Login</h3>
+                <button onclick="closeLoginModal()" class="text-parchment/60 hover:text-parchment">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <form id="login-form" onsubmit="handleCustomerLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-parchment/80 text-sm mb-2">Email</label>
+                    <input type="email" id="customer-email" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red" placeholder="your@email.com">
+                </div>
+                <div>
+                    <label class="block text-parchment/80 text-sm mb-2">Password</label>
+                    <input type="password" id="customer-password" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red" placeholder="Enter password">
+                </div>
+                <button type="submit" class="w-full py-4 bg-lantern-red text-white rounded-lg font-semibold hover:bg-lantern-red/90 transition-all">Login</button>
+                <p class="text-center text-parchment/60 text-sm">Don't have an account? <button type="button" onclick="showSignupForm()" class="text-lantern-red hover:underline">Sign up</button></p>
+            </form>
+            <form id="signup-form" onsubmit="handleCustomerSignup(event)" class="space-y-4 hidden">
+                <div>
+                    <label class="block text-parchment/80 text-sm mb-2">Full Name</label>
+                    <input type="text" id="signup-name" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red" placeholder="John Doe">
+                </div>
+                <div>
+                    <label class="block text-parchment/80 text-sm mb-2">Email</label>
+                    <input type="email" id="signup-email" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red" placeholder="your@email.com">
+                </div>
+                <div>
+                    <label class="block text-parchment/80 text-sm mb-2">Phone</label>
+                    <input type="tel" id="signup-phone" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red" placeholder="+254...">
+                </div>
+                <div>
+                    <label class="block text-parchment/80 text-sm mb-2">Password</label>
+                    <input type="password" id="signup-password" required class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg text-parchment focus:outline-none focus:border-lantern-red" placeholder="Create password">
+                </div>
+                <button type="submit" class="w-full py-4 bg-lantern-red text-white rounded-lg font-semibold hover:bg-lantern-red/90 transition-all">Create Account</button>
+                <p class="text-center text-parchment/60 text-sm">Already have an account? <button type="button" onclick="showLoginForm()" class="text-lantern-red hover:underline">Login</button></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="/public/script.js"></script>
+</body>
+</html>

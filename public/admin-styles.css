@@ -1,0 +1,406 @@
+/* Admin Dashboard Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #1a1a1a;
+    color: #F5ECD7;
+}
+
+.section-content {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-btn.active {
+    background-color: rgba(232, 69, 69, 0.1);
+    color: #E84545;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-pending {
+    background-color: rgba(232, 69, 69, 0.2);
+    color: #E84545;
+}
+
+.status-confirmed {
+    background-color: rgba(22, 163, 74, 0.2);
+    color: #16a34a;
+}
+
+.status-cancelled {
+    background-color: rgba(100, 100, 100, 0.2);
+    color: #a0a0a0;
+}
+
+.action-btn {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-right: 4px;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-confirm {
+    background-color: rgba(22, 163, 74, 0.2);
+    color: #16a34a;
+}
+
+.btn-cancel {
+    background-color: rgba(232, 69, 69, 0.2);
+    color: #E84545;
+}
+
+.menu-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.menu-card:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+.menu-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+.tag-signature {
+    background-color: #C9A84C;
+    color: #1a1a1a;
+}
+
+.tag-popular {
+    background-color: #E84545;
+    color: white;
+}
+
+.tag-vegan {
+    background-color: #16a34a;
+    color: white;
+}
+
+.tag-spicy {
+    background-color: #dc2626;
+    color: white;
+}
+
+.message-card {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+#menu-modal {
+    display: none;
+}
+
+#menu-modal.active {
+    display: flex;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    aside {
+        width: 100%;
+        position: relative;
+        height: auto;
+    }
+    
+    main {
+        margin-left: 0;
+    }
+}
+
+/* Review Cards */
+.review-card-admin {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.review-card-admin:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(232, 69, 69, 0.3);
+}
+
+/* Gallery Admin */
+.gallery-item-admin {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.gallery-item-admin img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Toast Notifications */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    z-index: 2000;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    color: white;
+    font-weight: 500;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast-success {
+    background-color: #16a34a;
+}
+
+.toast-error {
+    background-color: #dc2626;
+}
+
+.toast-info {
+    background-color: #3b82f6;
+}
+
+/* Menu Category Dropdown - Pink Background with Black Text */
+#menu-filter-category {
+    background-color: #ec4899 !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+    border: 2px solid #ec4899 !important;
+}
+
+#menu-filter-category option {
+    background-color: #ec4899 !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+}
+
+/* Modals */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 32px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Order Cards */
+.order-card-admin {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Order Cards */
+.order-card-admin {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.order-card-admin:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(232, 69, 69, 0.3);
+}
+
+/* Menu Category Dropdown - Light Pink Background with Black Text */
+#menu-filter-category,
+#menu-filter-category option {
+    background-color: #FFB6C1 !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+    border: 2px solid #FFB6C1 !important;
+}
+
+/* Stat Cards */
+.stat-card {
+    background: linear-gradient(135deg, rgba(232, 69, 69, 0.1) 0%, rgba(201, 168, 76, 0.1) 100%);
+    border: 1px solid rgba(232, 69, 69, 0.2);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(232, 69, 69, 0.4);
+    box-shadow: 0 10px 30px rgba(232, 69, 69, 0.2);
+}
+
+/* Data Table */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(245, 236, 215, 0.6);
+}
+
+.data-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.data-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-success {
+    background-color: rgba(22, 163, 74, 0.2);
+    color: #16a34a;
+}
+
+.badge-warning {
+    background-color: rgba(234, 179, 8, 0.2);
+    color: #eab308;
+}
+
+.badge-danger {
+    background-color: rgba(232, 69, 69, 0.2);
+    color: #E84545;
+}
+
+.badge-info {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+}
+
+/* Action Buttons */
+.action-btn {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-right: 4px;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Toast Notifications */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    z-index: 2000;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    aside {
+        width: 100%;
+        position: relative;
+        height: auto;
+    }
+    
+    main {
+        margin-left: 0;
+    }
+}
+
+/* Menu Category Dropdown - Light Pink Background with Black Text */
+#menu-filter-category,
+#menu-filter-category option {
+    background-color: #FFB6C1 !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+    border: 2px solid #FFB6C1 !important;
+}
